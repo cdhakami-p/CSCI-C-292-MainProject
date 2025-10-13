@@ -1,4 +1,6 @@
+using Mono.Cecil;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerSpawner : MonoBehaviour
 {
@@ -39,7 +41,21 @@ public class PlayerSpawner : MonoBehaviour
     {
         Vector3 topSpawnPosition = topSpawn1.position;
         Vector3 bottomSpawnPosition = bottomSpawn1.position;
-        Instantiate(playerPrefab[Random.Range(0,playerPrefab.Length-1)], topSpawnPosition, Quaternion.identity);
-        Instantiate(playerPrefab[Random.Range(0, playerPrefab.Length-1)], bottomSpawnPosition, Quaternion.identity);
+        
+        var topPlayer1 = Instantiate(playerPrefab[Random.Range(0,playerPrefab.Length)], topSpawnPosition, Quaternion.identity);
+        var bottomPlayer1 = Instantiate(playerPrefab[Random.Range(0, playerPrefab.Length)], bottomSpawnPosition, Quaternion.identity);
+
+        Outline(topPlayer1, Color.red);
+        Outline(bottomPlayer1, Color.lightBlue);
+    }
+
+    void Outline(GameObject obj, Color color, float thickness = 0.1f)
+    {
+        var outline = obj.transform.Find("ring")?.GetComponent<SpriteRenderer>();
+
+        if (outline)
+        {
+            outline.color = color;
+        }
     }
 }
