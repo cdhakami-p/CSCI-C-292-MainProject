@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   useArrows: 0
-  moveSpeed: 4
+  moveSpeed: 3
   turnSpeed: 200
   friction: 0.2
 --- !u!1 &1812242993932570130
