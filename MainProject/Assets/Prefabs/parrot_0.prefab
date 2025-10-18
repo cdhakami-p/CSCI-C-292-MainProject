@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6351350760835797951}
   - component: {fileID: -7679254867607352667}
   - component: {fileID: 4059833275002597775}
+  - component: {fileID: 20132552270000622}
   m_Layer: 0
   m_Name: parrot_0
   m_TagString: Untagged
@@ -156,6 +157,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &20132552270000622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263064497371624180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efa057a95890324badbc852cc0188e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  useArrows: 0
+  moveSpeed: 4
+  turnSpeed: 200
+  friction: 0.2
 --- !u!1 &1812242993932570130
 GameObject:
   m_ObjectHideFlags: 0

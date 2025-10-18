@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 6802875366727689632}
   - component: {fileID: 6758801571226876132}
   - component: {fileID: 3562914262975262199}
+  - component: {fileID: -5820530027263756313}
   m_Layer: 0
   m_Name: whale_0
   m_TagString: Untagged
@@ -246,3 +247,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &-5820530027263756313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6549287851956115870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efa057a95890324badbc852cc0188e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  useArrows: 0
+  moveSpeed: 4
+  turnSpeed: 200
+  friction: 0.2
