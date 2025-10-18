@@ -263,3 +263,5 @@ MonoBehaviour:
   moveSpeed: 3
   turnSpeed: 200
   friction: 0.2
+  boostStrength: 6
+  boostCooldown: 3
