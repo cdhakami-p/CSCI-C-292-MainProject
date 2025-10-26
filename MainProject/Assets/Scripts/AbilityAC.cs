@@ -53,11 +53,11 @@ public abstract class AbilityAC : MonoBehaviour
 
         orb = rb;
         bool startWindow = onTrigger();
+        print("Ability activated");
 
-        if(startWindow && abilityDuration > 0f)
+        if (startWindow && abilityDuration > 0f)
         {
             abilityActive = true;
-            print("Ability activated");
             abilityEndTime = Time.time + abilityDuration;
         }
         else

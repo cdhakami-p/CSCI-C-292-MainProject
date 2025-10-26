@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: -7679254867607352667}
   - component: {fileID: 4059833275002597775}
   - component: {fileID: 20132552270000622}
+  - component: {fileID: 3322268797974840958}
+  - component: {fileID: 1104107982157596916}
   m_Layer: 0
   m_Name: parrot_0
   m_TagString: Untagged
@@ -174,6 +176,37 @@ MonoBehaviour:
   turnSpeed: 200
   friction: 0.2
   boostStrength: 6
+  boostCooldown: 3
+--- !u!114 &3322268797974840958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263064497371624180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8deb89a913b69443aaa8550f794ff3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityController
+  useArrow: 0
+  bottomKey: 308
+  topKey: 307
+--- !u!114 &1104107982157596916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263064497371624180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab3da5937c519a04cbe1d572198cbde3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ParrotAbility
+  abilityCooldown: 6
+  abilityDuration: 6
+  boostStrength: 10
   boostCooldown: 3
 --- !u!1 &1812242993932570130
 GameObject:
