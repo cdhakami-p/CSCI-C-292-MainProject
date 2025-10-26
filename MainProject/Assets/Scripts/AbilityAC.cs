@@ -9,7 +9,7 @@ public abstract class AbilityAC : MonoBehaviour
     protected float nextAbilityTime = 0f;
     protected bool abilityActive = false;
     protected float abilityEndTime = 0f;
-    protected Rigidbody2D Orb;
+    protected Rigidbody2D orb;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -51,7 +51,7 @@ public abstract class AbilityAC : MonoBehaviour
             return;
         }
 
-        Orb = rb;
+        orb = rb;
         bool startWindow = onTrigger();
 
         if(startWindow && abilityDuration > 0f)

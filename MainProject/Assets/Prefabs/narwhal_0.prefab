@@ -103,6 +103,8 @@ GameObject:
   - component: {fileID: 7468382944708123986}
   - component: {fileID: 5922302340952788647}
   - component: {fileID: 4993067583499915334}
+  - component: {fileID: -2579600532057220342}
+  - component: {fileID: -3291705648473783705}
   m_Layer: 0
   m_Name: narwhal_0
   m_TagString: Untagged
@@ -265,3 +267,35 @@ MonoBehaviour:
   friction: 0.2
   boostStrength: 6
   boostCooldown: 3
+--- !u!114 &-2579600532057220342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5721266992388596861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8deb89a913b69443aaa8550f794ff3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityController
+  useArrow: 0
+  bottomKey: 308
+  topKey: 307
+--- !u!114 &-3291705648473783705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5721266992388596861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4fa16ccecdbaea4cbcafd979a2903d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NarwalAbility
+  abilityCooldown: 6
+  abilityDuration: 6
+  offset: {x: 0, y: 1}
+  releaseForce: 5
+  ballTag: Ball
