@@ -3,29 +3,45 @@ using UnityEngine;
 public abstract class AbilityAC : MonoBehaviour
 {
 
-    [SerializeField] protected float abilityCooldown = 3f;
+    [SerializeField] protected float abilityCooldown = 6f;
+    [SerializeField] protected float abilityDuration = 6f;
+    
     protected float nextAbilityTime = 0f;
+    protected bool abilityActive = false;
+    protected float abilityEndTime = 0f;
+    protected Rigidbody2D Orb;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        nextAbilityTime = Time.time + abilityCooldown;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        if (!abilityActive)
+        {
+            return;
+        }
+
+        onWindowFixedUpdate();
+        if (Time.time >= abilityEndTime)
+        {
+            abilityActive = false;
+            onWindowEnd();
+            nextAbilityTime = Time.time + abilityCooldown;
+        }
     }
 
     public bool isAbilityReady()
     {
-        return Time.time >= nextAbilityTime;
+        return !abilityActive && Time.time >= nextAbilityTime;
     }
 
     public float cooldownRemaining()
     {
-        return Mathf.Max(0f, nextAbilityTime - Time.time);
+        return abilityActive ? Mathf.Max(0, abilityEndTime - Time.time) : Mathf.Max(0, nextAbilityTime - Time.time);
     }
 
     public void triggerAbility(Rigidbody2D rb)
@@ -34,10 +50,23 @@ public abstract class AbilityAC : MonoBehaviour
         {
             return;
         }
-        
-        trigger(rb);
-        nextAbilityTime = Time.time + abilityCooldown;
+
+        Orb = rb;
+        bool startWindow = onTrigger();
+
+        if(startWindow && abilityDuration > 0f)
+        {
+            abilityActive = true;
+            print("Ability activated");
+            abilityEndTime = Time.time + abilityDuration;
+        }
+        else
+        {
+            nextAbilityTime = Time.time + abilityCooldown;
+        }
     }
 
-    protected abstract void trigger(Rigidbody2D rb);
+    protected abstract bool onTrigger();
+    protected abstract void onWindowFixedUpdate();
+    protected abstract void onWindowEnd();
 }

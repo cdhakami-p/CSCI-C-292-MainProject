@@ -28,6 +28,7 @@ public class AbilityController : MonoBehaviour
         }
 
         bool pressed = useArrow ? (Input.GetKey(topKey)) : (Input.GetKey(bottomKey));
+
         if (pressed)
         {
             ability.triggerAbility(rb);
@@ -36,6 +37,6 @@ public class AbilityController : MonoBehaviour
 
     public void setUseArrows(bool value)
     {
-               useArrow = value;
+        useArrow = value;
     }
 }

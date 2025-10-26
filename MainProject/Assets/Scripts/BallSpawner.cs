@@ -8,7 +8,7 @@ public class BallSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Debug.LogError("BallSpawner - no ballPrefab assigned");
+        //Debug.LogError("BallSpawner - no ballPrefab assigned");
         SpawnBall();
     }
 

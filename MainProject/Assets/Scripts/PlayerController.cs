@@ -1,3 +1,4 @@
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -65,9 +66,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void SetUseArrows(bool value)
+    public void setUseArrows(bool value)
     {
         useArrows = value;
+        var ac = GetComponent<AbilityController>();
+        if (ac)
+        {
+            ac.setUseArrows(value);
+        }
     }
 
 }

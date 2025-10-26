@@ -103,6 +103,8 @@ GameObject:
   - component: {fileID: -3882276174084143529}
   - component: {fileID: 3930415575370574037}
   - component: {fileID: -4034607821690944886}
+  - component: {fileID: 7555101116602933454}
+  - component: {fileID: -4207520406637726625}
   m_Layer: 0
   m_Name: gorilla_0
   m_TagString: Untagged
@@ -265,3 +267,34 @@ MonoBehaviour:
   friction: 0.2
   boostStrength: 6
   boostCooldown: 3
+--- !u!114 &7555101116602933454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8430684789331292590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8deb89a913b69443aaa8550f794ff3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityController
+  useArrow: 0
+  bottomKey: 308
+  topKey: 307
+--- !u!114 &-4207520406637726625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8430684789331292590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6c71d17555ef746b05e874638ae6ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GorillaAbility
+  abilityCooldown: 6
+  abilityDuration: 6
+  strengthMultiplier: 10
+  ballTag: Ball
