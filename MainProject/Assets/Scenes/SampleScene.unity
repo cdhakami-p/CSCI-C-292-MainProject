@@ -684,7 +684,7 @@ GameObject:
   - component: {fileID: 696644539}
   - component: {fileID: 696644538}
   - component: {fileID: 696644537}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GoalLineTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9093,7 +9093,7 @@ GameObject:
   - component: {fileID: 1574417651}
   - component: {fileID: 1574417650}
   - component: {fileID: 1574417649}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ArenaCorners1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9228,7 +9228,7 @@ GameObject:
   - component: {fileID: 1776986269}
   - component: {fileID: 1776986268}
   - component: {fileID: 1776986267}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ArenaWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9903,7 +9903,7 @@ GameObject:
   - component: {fileID: 2041501350}
   - component: {fileID: 2041501349}
   - component: {fileID: 2041501351}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GoalLineBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10071,7 +10071,7 @@ GameObject:
   - component: {fileID: 2114950897}
   - component: {fileID: 2114950896}
   - component: {fileID: 2114950895}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ArenaCorners2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
