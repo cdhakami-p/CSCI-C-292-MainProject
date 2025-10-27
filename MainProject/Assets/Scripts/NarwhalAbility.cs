@@ -37,11 +37,8 @@ public class NarwalAbility : AbilityAC
         brb.linearVelocity = Vector2.zero;
         brb.angularVelocity = 0f;
         brb.bodyType = RigidbodyType2D.Kinematic;
-
-        if (bcol)
-        {
-            bcol.enabled = false;
-        }
+        
+        brb.gameObject.layer = LayerMask.NameToLayer("CarriedBall");
 
         brb.transform.SetParent(transform, true);
         brb.transform.position = transform.TransformPoint(offset);
@@ -56,13 +53,12 @@ public class NarwalAbility : AbilityAC
         }
         
         brb.transform.SetParent(null, true);
+
+        Vector2 towardPlayer = ((Vector2)transform.position - (Vector2)brb.transform.position).normalized;
+        brb.transform.position = brb.position + towardPlayer;
+
         brb.bodyType = ogType;
         brb.gameObject.layer = ogLayer;
-
-        if (bcol)
-        {
-            bcol.enabled = true;
-        }
 
         brb.AddForce(transform.up * releaseForce, ForceMode2D.Impulse);
         
