@@ -198,7 +198,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 6
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.7776282, y: 0.5906966, z: 0}
   m_MaxChunkCount: 16
@@ -3889,7 +3889,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 5
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 1.8125, y: 2.53125, z: 0}
   m_MaxChunkCount: 16
@@ -9093,7 +9093,7 @@ GameObject:
   - component: {fileID: 1574417651}
   - component: {fileID: 1574417650}
   - component: {fileID: 1574417649}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: ArenaCorners1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9228,7 +9228,7 @@ GameObject:
   - component: {fileID: 1776986269}
   - component: {fileID: 1776986268}
   - component: {fileID: 1776986267}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: ArenaWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10071,7 +10071,7 @@ GameObject:
   - component: {fileID: 2114950897}
   - component: {fileID: 2114950896}
   - component: {fileID: 2114950895}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: ArenaCorners2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
