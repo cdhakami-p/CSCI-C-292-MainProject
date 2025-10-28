@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8153707282257307444}
   - component: {fileID: 656149004464301227}
   - component: {fileID: 3597063451996748658}
+  - component: {fileID: 227756833572170732}
+  - component: {fileID: -7216437920164707684}
   m_Layer: 9
   m_Name: snake_0
   m_TagString: Untagged
@@ -175,6 +177,36 @@ MonoBehaviour:
   friction: 0.2
   boostStrength: 6
   boostCooldown: 3
+--- !u!114 &227756833572170732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973590235261494556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8deb89a913b69443aaa8550f794ff3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityController
+  useArrow: 0
+  bottomKey: 308
+  topKey: 307
+--- !u!114 &-7216437920164707684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973590235261494556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dddd874173af5fb46a4bd6007aeb1970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SnakeAbility
+  abilityCooldown: 6
+  abilityDuration: 6
+  speedMultiplier: 6
 --- !u!1 &6152546203497026742
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using UnityEngine;
 public class OwlAbility : AbilityAC
 {
 
-    [SerializeField] float invisibleAlpha = 0.3f;
+    [SerializeField] float invisibleAlpha = 0.5f;
     [SerializeField] float visibleAlpha = 1f;
 
     SpriteRenderer[] srs;
