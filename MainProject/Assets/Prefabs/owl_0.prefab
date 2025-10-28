@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 317474741227059765}
   - component: {fileID: 817629373736175601}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,9 @@ GameObject:
   - component: {fileID: -2867786545621728307}
   - component: {fileID: -8006826626018737700}
   - component: {fileID: 4681786796870990539}
-  m_Layer: 0
+  - component: {fileID: -5371983207907102182}
+  - component: {fileID: 1646253580653507600}
+  m_Layer: 9
   m_Name: owl_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,3 +267,35 @@ MonoBehaviour:
   friction: 0.2
   boostStrength: 6
   boostCooldown: 3
+--- !u!114 &-5371983207907102182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8099103423132444682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8deb89a913b69443aaa8550f794ff3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityController
+  useArrow: 0
+  bottomKey: 308
+  topKey: 307
+--- !u!114 &1646253580653507600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8099103423132444682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136351f8e4fc18b4db26df178ef1a5ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OwlAbility
+  abilityCooldown: 6
+  abilityDuration: 6
+  invisibleAlpha: 0.5
+  visibleAlpha: 1
+  owlLayer: OwlLayer

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8153707282257307444}
   - component: {fileID: 656149004464301227}
   - component: {fileID: 3597063451996748658}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: snake_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5705613390612155688}
   - component: {fileID: 7593517558263928194}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7027931453373542830}
   - component: {fileID: 3406767526597215987}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 6758801571226876132}
   - component: {fileID: 3562914262975262199}
   - component: {fileID: -5820530027263756313}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: whale_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
