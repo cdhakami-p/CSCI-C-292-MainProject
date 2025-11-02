@@ -44,6 +44,7 @@ public class PlayerSpawner : MonoBehaviour
 
         var topPlayer1 = Instantiate(playerPrefab[Random.Range(0, playerPrefab.Length)], topSpawnPosition, Quaternion.Euler(0f,0f,180f));
         var bottomPlayer1 = Instantiate(playerPrefab[Random.Range(0, playerPrefab.Length)], bottomSpawnPosition, Quaternion.identity);
+        //0, playerPrefab.Length
 
         Outline(topPlayer1, Color.red);
         Outline(bottomPlayer1, Color.lightBlue);
