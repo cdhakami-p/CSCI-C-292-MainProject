@@ -67,6 +67,8 @@ public class GameUIManager : MonoBehaviour
 
     private IEnumerator StartCountdown()
     {
+        yield return new WaitForSecondsRealtime(0.5f);
+
         if (countdownText != null)
         {
             countdownText.gameObject.SetActive(true);
