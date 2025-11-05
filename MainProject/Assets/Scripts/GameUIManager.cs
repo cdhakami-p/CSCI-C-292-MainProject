@@ -1,0 +1,174 @@
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
+using System.Collections;
+using UnityEngine.Rendering;
+
+public class GameUIManager : MonoBehaviour
+{
+
+    [SerializeField] private TMP_Text timerText;
+    [SerializeField] private TMP_Text scoreText;
+
+    [SerializeField] private Button pauseButton;
+    [SerializeField] private GameObject pausePanel;
+
+    [SerializeField] private TMP_Text countdownText;
+
+    [SerializeField] private string mainMenuSceneName = "MainMenu";
+
+    [SerializeField] private float matchDuration = 300f; 
+
+    private bool isPaused = false;
+    private bool gameActive = false;
+    private float timeRemaining;
+
+    private int bottomScore = 0;
+    private int topScore = 0;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        timeRemaining = matchDuration;
+        UpdateTimerUI();
+
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(false);
+        }
+
+        Time.timeScale = 0f;
+        StartCoroutine(StartCountdown());
+
+        if (pauseButton != null)
+        {
+            pauseButton.onClick.AddListener(TogglePause);
+        }
+
+        if (scoreText != null)
+        {
+            scoreText.text = "0 - 0";
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (gameActive && !isPaused)
+        {
+            timeRemaining -= Time.unscaledDeltaTime;
+
+            if (timeRemaining < 0f) timeRemaining = 0f;
+
+            UpdateTimerUI();
+        }
+    }
+
+    private IEnumerator StartCountdown()
+    {
+        if (countdownText != null)
+        {
+            countdownText.gameObject.SetActive(true);
+        }
+
+        int count = 3;
+        while (count > 0)
+        {
+            if (countdownText != null)
+            {
+                countdownText.text = count.ToString();
+            }
+
+            yield return new WaitForSecondsRealtime(1f);
+            count--;
+        }
+
+        if (countdownText != null)
+        {
+            countdownText.text = "Go!";
+        }
+
+        yield return new WaitForSecondsRealtime(0.5f);
+
+        if (countdownText != null)
+        {
+            countdownText.gameObject.SetActive(false);
+        }
+
+        Time.timeScale = 1f;
+        gameActive = true;
+    }
+
+    private void UpdateTimerUI()
+    {
+        if (timerText == null) return;
+
+        int totalSeconds = Mathf.FloorToInt(timeRemaining);
+        int minutes = totalSeconds / 60;
+        int seconds = totalSeconds % 60;
+
+        timerText.text = string.Format("{0}:{1:00}", minutes, seconds);
+    }
+
+    public void TogglePause()
+    {
+        if (!gameActive) return;
+        isPaused = !isPaused;
+
+        if (isPaused)
+        {
+            Time.timeScale = 0f;
+            if (pausePanel != null)
+            {
+                pausePanel.SetActive(true);
+            }
+        } else
+        {
+            Time.timeScale = 1f;
+            if (pausePanel != null)
+            {
+                pausePanel.SetActive(false);
+            }
+        }
+    }
+
+    public void OnResume()
+    {
+        if (!gameActive) return;
+
+        isPaused = false;
+        Time.timeScale = 1f;
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(false);
+        }
+    }
+
+    public void OnQuit()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(mainMenuSceneName);
+    }
+
+    public void SetScore(int bottom,  int top)
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = bottom + "-" + top;
+        }
+    }
+
+    public void AddScore(bool scoredOnTop)
+    {
+        if (scoredOnTop)
+        {
+            bottomScore++;
+        } else
+        {
+            topScore++;
+        }
+        
+        SetScore(bottomScore, topScore);
+    }
+}

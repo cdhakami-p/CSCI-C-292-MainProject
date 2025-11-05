@@ -3,12 +3,17 @@ using UnityEngine;
 public class GoalLine : MonoBehaviour
 {
 
+    [SerializeField] private bool isTopGoalLine = true;
+
     public string ballTag = "Ball";
+
+    private GameUIManager ui;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        ui = FindFirstObjectByType<GameUIManager>();
     }
 
     // Update is called once per frame
@@ -22,7 +27,11 @@ public class GoalLine : MonoBehaviour
         if (other.CompareTag(ballTag))
         {
             Debug.Log("Goal!");
-            //Later Code
+            
+            if (ui != null)
+            {
+                ui.AddScore(isTopGoalLine);
+            }
         }
     }
 }
