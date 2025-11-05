@@ -1054,6 +1054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42b138b860fd07649bb4b1e727d72806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  isTopGoalLine: 1
   ballTag: Ball
 --- !u!61 &696644538
 BoxCollider2D:
@@ -1089,7 +1090,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 10}
+  m_Offset: {x: 0, y: 10.1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1133,7 +1134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &732073704
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1150,8 +1151,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.0000076293945}
-  m_SizeDelta: {x: 167.6555, y: 344.2512}
+  m_AnchoredPosition: {x: 0.001049, y: 3.015}
+  m_SizeDelta: {x: 768, y: 341.2362}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &732073705
 MonoBehaviour:
@@ -1200,8 +1201,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 300
-  m_fontSizeBase: 300
+  m_fontSize: 250
+  m_fontSizeBase: 250
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4651,7 +4652,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1138754366}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1270227933}
+        m_TargetAssemblyTypeName: GameUIManager, Assembly-CSharp
+        m_MethodName: OnQuit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1138754366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5533,6 +5546,63 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!1 &1270227932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1270227934}
+  - component: {fileID: 1270227933}
+  m_Layer: 0
+  m_Name: GameUIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1270227933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270227932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 033a9405f76e69f4bae94dbc22248f05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameUIManager
+  timerText: {fileID: 1440568906}
+  scoreText: {fileID: 169727480}
+  pauseButton: {fileID: 283601738}
+  pausePanel: {fileID: 308943956}
+  countdownText: {fileID: 732073705}
+  mainMenuSceneName: MainMenu
+  matchDuration: 300
+  ballSpawn: {fileID: 2074322468}
+  playerBottomSpawn: {fileID: 2077660046}
+  playerTopSpawn: {fileID: 900176098}
+  ball: {fileID: 0}
+  playerBottom: {fileID: 0}
+  playerTop: {fileID: 0}
+--- !u!4 &1270227934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270227932}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.99812, y: 5.39162, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1440568904
 GameObject:
   m_ObjectHideFlags: 0
@@ -11404,7 +11474,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -5.2}
+  m_Offset: {x: 0, y: -5.3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -11443,6 +11513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42b138b860fd07649bb4b1e727d72806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoalLine
+  isTopGoalLine: 0
   ballTag: Ball
 --- !u!1 &2074322467
 GameObject:
@@ -11832,7 +11903,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2144790371}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1270227933}
+        m_TargetAssemblyTypeName: GameUIManager, Assembly-CSharp
+        m_MethodName: OnResume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2144790371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11884,3 +11967,4 @@ SceneRoots:
   - {fileID: 1935488599}
   - {fileID: 2088524940}
   - {fileID: 1542491635}
+  - {fileID: 1270227934}

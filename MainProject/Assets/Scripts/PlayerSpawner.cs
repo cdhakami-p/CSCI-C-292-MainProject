@@ -39,11 +39,17 @@ public class PlayerSpawner : MonoBehaviour
 
     void SpawnPlayers()
     {
+        GameObject topPrefab = GetPrefab(GameData.topPlayerName);
+        Debug.Log("Top Player Name: " + GameData.topPlayerName);
+        GameObject bottomPrefab = GetPrefab(GameData.bottomPlayerName);
+        Debug.Log("Bottom Player Name: " + GameData.bottomPlayerName);
+
+
         Vector3 topSpawnPosition = topSpawn1.position;
         Vector3 bottomSpawnPosition = bottomSpawn1.position;
 
-        var topPlayer1 = Instantiate(playerPrefab[Random.Range(0, playerPrefab.Length)], topSpawnPosition, Quaternion.Euler(0f,0f,180f));
-        var bottomPlayer1 = Instantiate(playerPrefab[Random.Range(0, playerPrefab.Length)], bottomSpawnPosition, Quaternion.identity);
+        var topPlayer1 = Instantiate(topPrefab, topSpawnPosition, Quaternion.Euler(0f,0f,180f));
+        var bottomPlayer1 = Instantiate(bottomPrefab, bottomSpawnPosition, Quaternion.identity);
         //0, playerPrefab.Length
 
         Outline(topPlayer1, Color.red);
@@ -76,5 +82,24 @@ public class PlayerSpawner : MonoBehaviour
         {
             outline.color = color;
         }
+    }
+
+    private GameObject GetPrefab(string playerName)
+    {
+        if (string.IsNullOrEmpty(playerName))
+        {
+            return playerPrefab[Random.Range(0, playerPrefab.Length)];
+        }
+
+        foreach (var prefab in playerPrefab)
+        {
+            if (prefab != null && prefab.name == playerName)
+            {
+                return prefab;
+            }
+        }
+
+        Debug.LogWarning($"PlayerSpawner: no prefab found matching '{playerName}'");
+        return playerPrefab[Random.Range(0, playerPrefab.Length)];
     }
 }
