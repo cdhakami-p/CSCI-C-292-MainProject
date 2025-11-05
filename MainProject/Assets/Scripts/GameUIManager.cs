@@ -18,7 +18,7 @@ public class GameUIManager : MonoBehaviour
 
     [SerializeField] private string mainMenuSceneName = "MainMenu";
 
-    [SerializeField] private float matchDuration = 300f;
+    [SerializeField] private float matchDuration = 180f;
 
     [SerializeField] private Transform ballSpawn;
     [SerializeField] private Transform playerBottomSpawn;
@@ -34,6 +34,8 @@ public class GameUIManager : MonoBehaviour
 
     private int bottomScore = 0;
     private int topScore = 0;
+
+    private bool gameOver = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -67,7 +69,16 @@ public class GameUIManager : MonoBehaviour
         {
             timeRemaining -= Time.unscaledDeltaTime;
 
-            if (timeRemaining < 0f) timeRemaining = 0f;
+            if (timeRemaining <= 0f && !gameOver)
+            {
+                timeRemaining = 0f;
+                UpdateTimerUI();
+
+                StartCoroutine(GameOver());
+                gameOver = true;
+
+                return;
+            }
 
             UpdateTimerUI();
         }
@@ -123,6 +134,8 @@ public class GameUIManager : MonoBehaviour
 
     public void TogglePause()
     {
+        if (gameOver) return;
+
         if (!gameActive) return;
         isPaused = !isPaused;
 
@@ -163,6 +176,8 @@ public class GameUIManager : MonoBehaviour
 
     public void GoalScored(bool scoredOnTop)
     {
+        if (gameOver) return;
+
         if(scoredOnTop)
         {
             bottomScore++;
@@ -272,5 +287,23 @@ public class GameUIManager : MonoBehaviour
         {
             playerBottom = rb;
         }
+    }
+
+    private IEnumerator GameOver()
+    {
+        gameActive = false;
+        isPaused = true;
+
+        if (countdownText != null)
+        {
+            countdownText.gameObject.SetActive(true);
+            countdownText.text = "Game Over!";
+        }
+
+        yield return new WaitForSecondsRealtime(3f);
+
+        Time.timeScale = 1f;
+
+        SceneManager.LoadScene(mainMenuSceneName);
     }
 }

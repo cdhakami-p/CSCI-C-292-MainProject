@@ -5581,7 +5581,7 @@ MonoBehaviour:
   pausePanel: {fileID: 308943956}
   countdownText: {fileID: 732073705}
   mainMenuSceneName: MainMenu
-  matchDuration: 300
+  matchDuration: 180
   ballSpawn: {fileID: 2074322468}
   playerBottomSpawn: {fileID: 2077660046}
   playerTopSpawn: {fileID: 900176098}
