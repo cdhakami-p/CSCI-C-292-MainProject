@@ -18,7 +18,15 @@ public class GameUIManager : MonoBehaviour
 
     [SerializeField] private string mainMenuSceneName = "MainMenu";
 
-    [SerializeField] private float matchDuration = 300f; 
+    [SerializeField] private float matchDuration = 300f;
+
+    [SerializeField] private Transform ballSpawn;
+    [SerializeField] private Transform playerBottomSpawn;
+    [SerializeField] private Transform playerTopSpawn;
+
+    [SerializeField] private Rigidbody2D ball;
+    [SerializeField] private Rigidbody2D playerBottom;
+    [SerializeField] private Rigidbody2D playerTop;
 
     private bool isPaused = false;
     private bool gameActive = false;
@@ -153,17 +161,9 @@ public class GameUIManager : MonoBehaviour
         SceneManager.LoadScene(mainMenuSceneName);
     }
 
-    public void SetScore(int bottom,  int top)
+    public void GoalScored(bool scoredOnTop)
     {
-        if (scoreText != null)
-        {
-            scoreText.text = bottom + "-" + top;
-        }
-    }
-
-    public void AddScore(bool scoredOnTop)
-    {
-        if (scoredOnTop)
+        if(scoredOnTop)
         {
             bottomScore++;
         } else
@@ -171,6 +171,106 @@ public class GameUIManager : MonoBehaviour
             topScore++;
         }
         
-        SetScore(bottomScore, topScore);
+        if (scoreText != null)
+        {
+            scoreText.text = string.Format("{0} - {1}", bottomScore, topScore);
+        }
+
+        StartCoroutine(Reset());
+    }
+
+    private IEnumerator Reset()
+    {
+        gameActive = false;
+        isPaused = true;
+
+        if (countdownText != null)
+        {
+            countdownText.gameObject.SetActive(true);
+            countdownText.text = "Goal!";
+        }
+
+        yield return new WaitForSecondsRealtime(2f);
+
+        Time.timeScale = 0f;
+        countdownText.gameObject.SetActive(false);
+
+        ResetBall();
+        ResetPlayers();
+        ResetPlayerAbilities();
+
+        yield return new WaitForSecondsRealtime(0.5f);
+        yield return StartCoroutine(StartCountdown());
+
+        isPaused = false;
+    }
+
+    private void ResetBall()
+    {
+        if (ball != null && ballSpawn != null)
+        {
+            ball.linearVelocity = Vector2.zero;
+            ball.angularVelocity = 0f;
+            ball.transform.position = ballSpawn.position;
+        }
+    }
+
+    private void ResetPlayers()
+    {
+        if (playerBottom != null && playerBottomSpawn != null)
+        {
+            playerBottom.linearVelocity = Vector2.zero;
+            playerBottom.angularVelocity = 0f;
+            playerBottom.transform.position = playerBottomSpawn.position;
+            playerBottom.transform.rotation = Quaternion.identity;
+        }
+        if (playerTop != null && playerTopSpawn != null)
+        {
+            playerTop.linearVelocity = Vector2.zero;
+            playerTop.angularVelocity = 0f;
+            playerTop.transform.position = playerTopSpawn.position;
+            playerTop.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+        }
+    }
+
+    private void ResetPlayerAbilities()
+    {
+        if (playerBottom != null)
+        {
+            var bottomController = playerBottom.GetComponent<PlayerController>();
+            if (bottomController != null)
+                bottomController.ResetBoostCooldown();
+
+            var bottomAbility = playerBottom.GetComponent<AbilityAC>();
+            if (bottomAbility != null)
+                bottomAbility.ResetAbilityCooldown();
+        }
+
+        if (playerTop != null)
+        {
+            var topController = playerTop.GetComponent<PlayerController>();
+            if (topController != null)
+                topController.ResetBoostCooldown();
+
+            var topAbility = playerTop.GetComponent<AbilityAC>();
+            if (topAbility != null)
+                topAbility.ResetAbilityCooldown();
+        }
+    }
+
+    public void RegisterBall(Rigidbody2D rb)
+    {
+        ball = rb;
+    }
+
+    public void RegisterPlayers(bool isTopPlayer, Rigidbody2D rb)
+    {
+        if (isTopPlayer)
+        {
+            playerTop = rb;
+        } else
+        {
+            playerBottom = rb;
+        }
     }
 }

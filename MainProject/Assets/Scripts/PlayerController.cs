@@ -76,4 +76,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void ResetBoostCooldown()
+    {
+        nextBoostTime = Time.time + boostCooldown;
+        prevBoostPressed = false;
+    }
+
 }

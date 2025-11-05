@@ -21,6 +21,15 @@ public class BallSpawner : MonoBehaviour
     void SpawnBall()
     {
         Vector3 spawnPosition = transform.position;
-        Instantiate(ballPrefab, spawnPosition, Quaternion.identity);
+        GameObject ballObj = Instantiate(ballPrefab, spawnPosition, Quaternion.identity);
+
+        var ui = FindFirstObjectByType<GameUIManager>();
+        if (ui != null)
+        {
+            var rb = ballObj.GetComponent<Rigidbody2D>();
+            if (rb != null) {
+                ui.RegisterBall(rb);
+            }
+        }
     }
 }

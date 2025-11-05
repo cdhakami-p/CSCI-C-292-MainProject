@@ -30,7 +30,7 @@ public class GoalLine : MonoBehaviour
             
             if (ui != null)
             {
-                ui.AddScore(isTopGoalLine);
+                ui.GoalScored(isTopGoalLine);
             }
         }
     }

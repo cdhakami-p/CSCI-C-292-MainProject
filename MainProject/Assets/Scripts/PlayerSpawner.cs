@@ -51,6 +51,21 @@ public class PlayerSpawner : MonoBehaviour
 
         topPlayer1.GetComponent<PlayerController>().setUseArrows(true);
         bottomPlayer1.GetComponent<PlayerController>().setUseArrows(false);
+
+        var ui = FindFirstObjectByType<GameUIManager>();
+        if (ui != null)
+        {
+            var topRb = topPlayer1.GetComponent<Rigidbody2D>();
+            var bottomRb = bottomPlayer1.GetComponent<Rigidbody2D>();
+
+            if (topRb != null) {
+                ui.RegisterPlayers(true, topRb);
+            }
+
+            if (bottomRb != null) {
+                ui.RegisterPlayers(false, bottomRb);
+            }
+        }
     }
 
     void Outline(GameObject obj, Color color, float thickness = 0.1f)

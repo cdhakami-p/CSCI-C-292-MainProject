@@ -66,6 +66,15 @@ public abstract class AbilityAC : MonoBehaviour
         }
     }
 
+    public void ResetAbilityCooldown()
+    {
+        abilityActive = false;
+        abilityEndTime = 0f;
+        orb = null;
+
+        nextAbilityTime = Time.time + abilityCooldown;
+    }
+
     protected abstract bool onTrigger();
     protected abstract void onWindowFixedUpdate();
     protected abstract void onWindowEnd();
