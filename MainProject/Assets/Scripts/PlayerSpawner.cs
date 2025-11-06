@@ -99,7 +99,6 @@ public class PlayerSpawner : MonoBehaviour
             }
         }
 
-        Debug.LogWarning($"PlayerSpawner: no prefab found matching '{playerName}'");
         return playerPrefab[Random.Range(0, playerPrefab.Length)];
     }
 }
