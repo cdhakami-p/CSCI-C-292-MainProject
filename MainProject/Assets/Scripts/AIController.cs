@@ -8,6 +8,7 @@ public class AIController : MonoBehaviour
     [SerializeField] private Transform enemyGoal;
 
     [SerializeField] private float turnTolerance = 5f;
+    [SerializeField] private float turnScale = 45f;
     [SerializeField] private float forwardAngle = 60f;
 
     [SerializeField] private float boostDistance = 3f;
@@ -16,7 +17,7 @@ public class AIController : MonoBehaviour
     [SerializeField] private float abilityDistance = 3f;
     [SerializeField] private float abilityMovement = 0.5f;
 
-    [SerializeField] private float attackDistance = 2f;
+    [SerializeField] private float attackDistance = 1.5f;
 
     public bool isTopTeam = false;
 
@@ -76,7 +77,7 @@ public class AIController : MonoBehaviour
 
         if (enemyGoal != null && distanceToBall < attackDistance)
         {
-            dir = (enemyGoal.position - transform.position);
+            dir = (Vector2)(enemyGoal.position - transform.position);
         }
 
 
@@ -84,13 +85,13 @@ public class AIController : MonoBehaviour
         float angle = Vector2.SignedAngle(forward, dir.normalized);
 
         float turnInput = 0f;
-        if (angle > turnTolerance)
+        if (Mathf.Abs(angle) > turnTolerance)
         {
-            turnInput = 1f;
+            turnInput = Mathf.Clamp(-angle / turnScale, -1f, 1f);
         }
-        else if (angle < -turnTolerance)
+        else 
         {
-            turnInput = -1f;
+            turnInput = 0f;
         }
 
         float forwardInput = Mathf.Abs(angle) < forwardAngle ? 1f : 0.5f;

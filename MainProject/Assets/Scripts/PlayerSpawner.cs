@@ -101,7 +101,7 @@ public class PlayerSpawner : MonoBehaviour
 
         GameObject player = Instantiate(prefab, spawn.position, rotation);
 
-        Outline(player, isBottomTeam ? Color.cyan : Color.red);
+        Outline(player, isBottomTeam ? Color.lightBlue : Color.red);
 
         var controller = player.GetComponent<PlayerController>();
         if (controller != null)
