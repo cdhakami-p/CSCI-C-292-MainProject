@@ -8,7 +8,12 @@ public class PlayerSpawner : MonoBehaviour
     [SerializeField] private GameObject[] playerPrefab;
 
     [SerializeField] private Transform topSpawn1;
+    [SerializeField] private Transform topSpawn2;
+    [SerializeField] private Transform topSpawn3;
+
     [SerializeField] private Transform bottomSpawn1;
+    [SerializeField] private Transform bottomSpawn2;
+    [SerializeField] private Transform bottomSpawn3;
 
     //[SerializeField] private int topPlayerIndex = 0;
     //[SerializeField] private int bottomPlayerIndex = 1;
@@ -28,7 +33,7 @@ public class PlayerSpawner : MonoBehaviour
             return;
         }
 
-        SpawnPlayers();
+        SpawnPlayers(GameData.selectedMode);
     }
 
     // Update is called once per frame
@@ -37,41 +42,94 @@ public class PlayerSpawner : MonoBehaviour
 
     }
 
-    void SpawnPlayers()
+    void SpawnPlayers(string mode)
     {
-        GameObject topPrefab = GetPrefab(GameData.topPlayerName);
-        Debug.Log("Top Player Name: " + GameData.topPlayerName);
-        GameObject bottomPrefab = GetPrefab(GameData.bottomPlayerName);
-        Debug.Log("Bottom Player Name: " + GameData.bottomPlayerName);
+        if (string.IsNullOrEmpty(mode))
+        {
+            mode = "1v1 - Solo";
+        }
 
+        if (mode == "1v1 - Solo")
+        {
+            SpawnOne(bottomSpawn1, GameData.bottomPlayerName, isBottomTeam: true, isHuman: true);
+            SpawnOne(topSpawn1, null, isBottomTeam: false, isHuman: false);
+        }
+        else if (mode == "1v1 - Co-op")
+        {
+            SpawnOne(bottomSpawn1, GameData.bottomPlayerName, isBottomTeam: true, isHuman: true);
+            SpawnOne(topSpawn1, GameData.topPlayerName, isBottomTeam: false, isHuman: true);
+        }
+        else if (mode == "3v3 - Solo")
+        {
+            SpawnOne(bottomSpawn1, GameData.bottomPlayerName, isBottomTeam: true, isHuman: true);
+            SpawnOne(bottomSpawn2, null, isBottomTeam: true, isHuman: false);
+            SpawnOne(bottomSpawn3, null, isBottomTeam: true, isHuman: false);
 
-        Vector3 topSpawnPosition = topSpawn1.position;
-        Vector3 bottomSpawnPosition = bottomSpawn1.position;
+            SpawnOne(topSpawn1, null, isBottomTeam: false, isHuman: false);
+            SpawnOne(topSpawn2, null, isBottomTeam: false, isHuman: false);
+            SpawnOne(topSpawn3, null, isBottomTeam: false, isHuman: false);
+        }
+        else if (mode == "3v3 - Co-op")
+        {
+            SpawnOne(bottomSpawn1, GameData.bottomPlayerName, isBottomTeam: true, isHuman: true);
+            SpawnOne(bottomSpawn2, null, isBottomTeam: true, isHuman: false);
+            SpawnOne(bottomSpawn3, null, isBottomTeam: true, isHuman: false);
 
-        var topPlayer1 = Instantiate(topPrefab, topSpawnPosition, Quaternion.Euler(0f,0f,180f));
-        var bottomPlayer1 = Instantiate(bottomPrefab, bottomSpawnPosition, Quaternion.identity);
-        //0, playerPrefab.Length
+            SpawnOne(topSpawn1, GameData.topPlayerName, isBottomTeam: false, isHuman: true);
+            SpawnOne(topSpawn2, null, isBottomTeam: false, isHuman: false);
+            SpawnOne(topSpawn3, null, isBottomTeam: false, isHuman: false);
+        }
+        else
+        {
+            Debug.LogError("PlayerSpawner - unknown mode: " + mode);
+            SpawnOne(bottomSpawn1, GameData.bottomPlayerName, isBottomTeam: true, isHuman: true);
+            SpawnOne(topSpawn1, null, isBottomTeam: false, isHuman: false);
+        }
+    }
 
-        Outline(topPlayer1, Color.red);
-        Outline(bottomPlayer1, Color.lightBlue);
+    GameObject SpawnOne(Transform spawn, string playerName, bool isBottomTeam, bool isHuman)
+    {
+        if (spawn == null)
+        {
+            Debug.LogError("PlayerSpawner - spawn point is null");
+            return null;
+        }
 
-        topPlayer1.GetComponent<PlayerController>().setUseArrows(true);
-        bottomPlayer1.GetComponent<PlayerController>().setUseArrows(false);
+        GameObject prefab = GetPrefab(playerName);
+
+        Quaternion rotation = isBottomTeam ? Quaternion.identity : Quaternion.Euler(0, 0, 180);
+
+        GameObject player = Instantiate(prefab, spawn.position, rotation);
+
+        Outline(player, isBottomTeam ? Color.cyan : Color.red);
+
+        var controller = player.GetComponent<PlayerController>();
+        if (controller != null)
+        {
+            if (isHuman)
+            {
+                controller.setUseArrows(!isBottomTeam);
+            }
+            else
+            {
+                var ai = player.AddComponent<AIController>();
+                ai.isTopTeam = !isBottomTeam;
+                controller.EnableAI();
+            }
+        }
 
         var ui = FindFirstObjectByType<GameUIManager>();
         if (ui != null)
         {
-            var topRb = topPlayer1.GetComponent<Rigidbody2D>();
-            var bottomRb = bottomPlayer1.GetComponent<Rigidbody2D>();
+            var rb = player.GetComponent<Rigidbody2D>();
 
-            if (topRb != null) {
-                ui.RegisterPlayers(true, topRb);
-            }
-
-            if (bottomRb != null) {
-                ui.RegisterPlayers(false, bottomRb);
+            if (rb != null)
+            {
+                ui.RegisterPlayers(!isBottomTeam, rb);
             }
         }
+
+        return player;
     }
 
     void Outline(GameObject obj, Color color, float thickness = 0.1f)
