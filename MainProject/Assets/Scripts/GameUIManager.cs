@@ -219,9 +219,9 @@ public class GameUIManager : MonoBehaviour
         Time.timeScale = 0f;
         countdownText.gameObject.SetActive(false);
 
+        ResetPlayerAbilities();
         ResetBall();
         ResetPlayers();
-        ResetPlayerAbilities();
 
         yield return new WaitForSecondsRealtime(0.5f);
         yield return StartCoroutine(StartCountdown());
