@@ -5647,6 +5647,14 @@ MonoBehaviour:
   ballSpawn: {fileID: 2074322468}
   playerBottomSpawn: {fileID: 2077660046}
   playerTopSpawn: {fileID: 900176098}
+  bottomPlayerSpawns:
+  - {fileID: 2077660046}
+  - {fileID: 345615798}
+  - {fileID: 1103188084}
+  topPlayerSpawns:
+  - {fileID: 900176098}
+  - {fileID: 1313960646}
+  - {fileID: 1486992760}
   ball: {fileID: 0}
   playerBottom: {fileID: 0}
   playerTop: {fileID: 0}

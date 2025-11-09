@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.Rendering;
 
 public class GameUIManager : MonoBehaviour
@@ -21,12 +22,20 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private float matchDuration = 180f;
 
     [SerializeField] private Transform ballSpawn;
+
     [SerializeField] private Transform playerBottomSpawn;
     [SerializeField] private Transform playerTopSpawn;
 
+    [SerializeField] private Transform[] bottomPlayerSpawns;
+    [SerializeField] private Transform[] topPlayerSpawns;
+
     [SerializeField] private Rigidbody2D ball;
+
     [SerializeField] private Rigidbody2D playerBottom;
     [SerializeField] private Rigidbody2D playerTop;
+
+    private List<Rigidbody2D> bottomPlayers = new List<Rigidbody2D>();
+    private List<Rigidbody2D> topPlayers = new List<Rigidbody2D>();
 
     private bool isPaused = false;
     private bool gameActive = false;
@@ -232,42 +241,71 @@ public class GameUIManager : MonoBehaviour
 
     private void ResetPlayers()
     {
-        if (playerBottom != null && playerBottomSpawn != null)
+        for (int i = 0; i < bottomPlayers.Count; i++)
         {
-            playerBottom.linearVelocity = Vector2.zero;
-            playerBottom.angularVelocity = 0f;
-            playerBottom.transform.position = playerBottomSpawn.position;
-            playerBottom.transform.rotation = Quaternion.identity;
+            var rb = bottomPlayers[i];
+            if (rb == null) continue;
+
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+
+            if (bottomPlayerSpawns != null && i < bottomPlayerSpawns.Length && bottomPlayerSpawns[i] != null)
+            {
+                rb.transform.position = bottomPlayerSpawns[i].position;
+                rb.transform.rotation = bottomPlayerSpawns[i].rotation;
+            }
+            else if (playerBottomSpawn != null && i == 0)
+            {
+                rb.transform.position = playerBottomSpawn.position;
+                rb.transform.rotation = Quaternion.identity;
+            }
         }
-        if (playerTop != null && playerTopSpawn != null)
+
+        for (int i = 0; i < topPlayers.Count; i++)
         {
-            playerTop.linearVelocity = Vector2.zero;
-            playerTop.angularVelocity = 0f;
-            playerTop.transform.position = playerTopSpawn.position;
-            playerTop.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+            var rb = topPlayers[i];
+            if (rb == null) continue;
+
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+
+            if (topPlayerSpawns != null && i < topPlayerSpawns.Length && topPlayerSpawns[i] != null)
+            {
+                rb.transform.position = topPlayerSpawns[i].position;
+                rb.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+            }
+            else if (playerTopSpawn != null && i == 0)
+            {
+                rb.transform.position = playerTopSpawn.position;
+                rb.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+            }
         }
     }
 
     private void ResetPlayerAbilities()
     {
-        if (playerBottom != null)
+        foreach (var rb in bottomPlayers)
         {
-            var bottomController = playerBottom.GetComponent<PlayerController>();
+            if (rb == null) continue;
+
+            var bottomController = rb.GetComponent<PlayerController>();
             if (bottomController != null)
                 bottomController.ResetBoostCooldown();
 
-            var bottomAbility = playerBottom.GetComponent<AbilityAC>();
+            var bottomAbility = rb.GetComponent<AbilityAC>();
             if (bottomAbility != null)
                 bottomAbility.ResetAbilityCooldown();
         }
 
-        if (playerTop != null)
+        foreach (var rb in topPlayers)
         {
-            var topController = playerTop.GetComponent<PlayerController>();
+            if (rb == null) continue;
+
+            var topController = rb.GetComponent<PlayerController>();
             if (topController != null)
                 topController.ResetBoostCooldown();
 
-            var topAbility = playerTop.GetComponent<AbilityAC>();
+            var topAbility = rb.GetComponent<AbilityAC>();
             if (topAbility != null)
                 topAbility.ResetAbilityCooldown();
         }
@@ -282,10 +320,10 @@ public class GameUIManager : MonoBehaviour
     {
         if (isTopPlayer)
         {
-            playerTop = rb;
+            topPlayers.Add(rb);
         } else
         {
-            playerBottom = rb;
+            bottomPlayers.Add(rb);
         }
     }
 
