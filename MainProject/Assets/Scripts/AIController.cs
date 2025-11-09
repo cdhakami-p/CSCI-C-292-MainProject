@@ -17,7 +17,7 @@ public class AIController : MonoBehaviour
     [SerializeField] private float abilityDistance = 3f;
     [SerializeField] private float abilityMovement = 0.5f;
 
-    [SerializeField] private float attackDistance = 1.5f;
+    [SerializeField] private float attackDistance = 1f;
 
     public bool isTopTeam = false;
 

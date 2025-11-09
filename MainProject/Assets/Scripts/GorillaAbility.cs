@@ -3,7 +3,7 @@ using UnityEngine;
 public class GorillaAbility : AbilityAC
 {
 
-    [SerializeField] private float strengthMultiplier = 10.0f;
+    [SerializeField] private float strengthMultiplier = 6.0f;
     [SerializeField] private string ballTag = "Ball";
 
     protected override bool onTrigger()
