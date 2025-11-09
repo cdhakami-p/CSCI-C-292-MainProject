@@ -20,6 +20,11 @@ public class PlayerController : MonoBehaviour
     private float nextBoostTime = 0f;
     private bool prevBoostPressed = false;
 
+    private bool isAI = false;
+    private float aiForward = 0f;
+    private float aiTurn = 0f;
+    private bool aiBoost = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,18 +38,29 @@ public class PlayerController : MonoBehaviour
         float forward, turn;
         bool boost;
 
-        if (useArrows)
+        if (isAI)
         {
-            forward = (Input.GetKey(KeyCode.UpArrow) ? 1 : 0) + (Input.GetKey(KeyCode.DownArrow) ? -1 : 0);
-            turn = (Input.GetKey(KeyCode.RightArrow) ? 1 : 0) + (Input.GetKey(KeyCode.LeftArrow) ? -1 : 0);
-            boost = Keyboard.current.rightShiftKey.isPressed;
+            forward = aiForward;
+            turn = aiTurn;
+            boost = aiBoost;
         }
         else
         {
-            forward = (Input.GetKey(KeyCode.W) ? 1 : 0) + (Input.GetKey(KeyCode.S) ? -1 : 0);
-            turn = (Input.GetKey(KeyCode.D) ? 1 : 0) + (Input.GetKey(KeyCode.A) ? -1 : 0);
-            boost = Keyboard.current.leftShiftKey.isPressed;
+            if (useArrows)
+            {
+                forward = (Input.GetKey(KeyCode.UpArrow) ? 1 : 0) + (Input.GetKey(KeyCode.DownArrow) ? -1 : 0);
+                turn = (Input.GetKey(KeyCode.RightArrow) ? 1 : 0) + (Input.GetKey(KeyCode.LeftArrow) ? -1 : 0);
+                boost = Keyboard.current.rightShiftKey.isPressed;
+            }
+            else
+            {
+                forward = (Input.GetKey(KeyCode.W) ? 1 : 0) + (Input.GetKey(KeyCode.S) ? -1 : 0);
+                turn = (Input.GetKey(KeyCode.D) ? 1 : 0) + (Input.GetKey(KeyCode.A) ? -1 : 0);
+                boost = Keyboard.current.leftShiftKey.isPressed;
+            }
         }
+
+        
 
         Vector2 fwd = transform.up;
         Vector2 right = transform.right;
@@ -82,4 +98,15 @@ public class PlayerController : MonoBehaviour
         prevBoostPressed = false;
     }
 
+    public void EnableAI()
+    {
+        isAI = true;
+    }
+
+    public void SetAIInput(float forward, float turn, bool boost)
+    {
+        aiForward = forward;
+        aiTurn = turn;
+        aiBoost = boost;
+    }
 }
