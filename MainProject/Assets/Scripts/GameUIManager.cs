@@ -34,6 +34,9 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private Rigidbody2D playerBottom;
     [SerializeField] private Rigidbody2D playerTop;
 
+    [SerializeField] private GoalLine topGoalLine;
+    [SerializeField] private GoalLine bottomGoalLine;
+
     private List<Rigidbody2D> bottomPlayers = new List<Rigidbody2D>();
     private List<Rigidbody2D> topPlayers = new List<Rigidbody2D>();
 
@@ -222,6 +225,16 @@ public class GameUIManager : MonoBehaviour
         ResetPlayerAbilities();
         ResetBall();
         ResetPlayers();
+
+        if (topGoalLine != null)
+        {
+            topGoalLine.SetCanScore(true);
+        }
+
+        if (bottomGoalLine != null)
+        {
+            bottomGoalLine.SetCanScore(true);
+        }
 
         yield return new WaitForSecondsRealtime(0.5f);
         yield return StartCoroutine(StartCountdown());

@@ -8,6 +8,7 @@ public class GoalLine : MonoBehaviour
     public string ballTag = "Ball";
 
     private GameUIManager ui;
+    private bool canScore = true;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,6 +25,11 @@ public class GoalLine : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (!canScore)
+        {
+            return;
+        }
+
         if (other.CompareTag(ballTag))
         {
             Debug.Log("Goal!");
@@ -32,6 +38,13 @@ public class GoalLine : MonoBehaviour
             {
                 ui.GoalScored(isTopGoalLine);
             }
+
+            canScore = false;
         }
+    }
+
+    public void SetCanScore(bool value)
+    {
+        canScore = value;
     }
 }

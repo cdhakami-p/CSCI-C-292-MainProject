@@ -5658,6 +5658,8 @@ MonoBehaviour:
   ball: {fileID: 0}
   playerBottom: {fileID: 0}
   playerTop: {fileID: 0}
+  topGoalLine: {fileID: 696644537}
+  bottomGoalLine: {fileID: 2041501351}
 --- !u!4 &1270227934
 Transform:
   m_ObjectHideFlags: 0
