@@ -296,5 +296,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GorillaAbility
   abilityCooldown: 6
   abilityDuration: 6
-  strengthMultiplier: 6
+  strengthMultiplier: 4
   ballTag: Ball
