@@ -70,14 +70,24 @@ public class AIController : MonoBehaviour
             return;
         }
 
-        Vector2 toBall = (ball.position - transform.position);
-        float distanceToBall = toBall.magnitude;
+        bool carryingBall = (ball.parent == this.transform);
 
-        Vector2 dir = toBall;
+        Vector2 dir;
 
-        if (enemyGoal != null && distanceToBall < attackDistance)
+        if (carryingBall && enemyGoal != null)
         {
             dir = (Vector2)(enemyGoal.position - transform.position);
+        } else
+        {
+            Vector2 toBall = (Vector2)(ball.position - transform.position);
+            float distToBall = toBall.magnitude;
+
+            dir = toBall;
+
+            if (enemyGoal != null && distToBall < attackDistance)
+            {
+                dir = (Vector2)(enemyGoal.position - transform.position);
+            }
         }
 
 
@@ -98,6 +108,7 @@ public class AIController : MonoBehaviour
 
         
         bool boost = false;
+        float distanceToBall = Vector2.Distance(transform.position, ball.position);
 
         if (distanceToBall < boostDistance && Mathf.Abs(angle) < boostAngle)
         {
@@ -113,6 +124,7 @@ public class AIController : MonoBehaviour
 
                 if (vel.sqrMagnitude > 0.01f)
                 {
+                    Vector2 toBall = (Vector2)(ball.position - transform.position);
                     float dot = Vector2.Dot(vel.normalized, toBall.normalized);
                     if (dot > abilityMovement)
                     {
