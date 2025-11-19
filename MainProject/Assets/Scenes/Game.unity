@@ -5660,6 +5660,8 @@ MonoBehaviour:
   playerTop: {fileID: 0}
   topGoalLine: {fileID: 696644537}
   bottomGoalLine: {fileID: 2041501351}
+  countdownSFX: {fileID: 8300000, guid: 32aeb82e7828ba543a189008d554e6c3, type: 3}
+  goalSFX: {fileID: 8300000, guid: cb6de80b949cc6a418a2e48a4ce9de77, type: 3}
 --- !u!4 &1270227934
 Transform:
   m_ObjectHideFlags: 0

@@ -37,6 +37,9 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private GoalLine topGoalLine;
     [SerializeField] private GoalLine bottomGoalLine;
 
+    [SerializeField] private AudioClip countdownSFX;
+    [SerializeField] private AudioClip goalSFX;
+
     private List<Rigidbody2D> bottomPlayers = new List<Rigidbody2D>();
     private List<Rigidbody2D> topPlayers = new List<Rigidbody2D>();
 
@@ -58,6 +61,11 @@ public class GameUIManager : MonoBehaviour
         if (pausePanel != null)
         {
             pausePanel.SetActive(false);
+        }
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.StopMusic();
         }
 
         Time.timeScale = 0f;
@@ -105,6 +113,11 @@ public class GameUIManager : MonoBehaviour
             countdownText.gameObject.SetActive(true);
         }
 
+        if (AudioManager.Instance != null && countdownSFX != null)
+        {
+            AudioManager.Instance.PlaySFX(countdownSFX);
+        }
+
         int count = 3;
         while (count > 0)
         {
@@ -127,6 +140,11 @@ public class GameUIManager : MonoBehaviour
         if (countdownText != null)
         {
             countdownText.gameObject.SetActive(false);
+        }
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMusic();
         }
 
         Time.timeScale = 1f;
@@ -201,6 +219,15 @@ public class GameUIManager : MonoBehaviour
         if (scoreText != null)
         {
             scoreText.text = string.Format("{0} - {1}", bottomScore, topScore);
+        }
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.StopMusic();
+            if (goalSFX != null)
+            {
+                AudioManager.Instance.PlaySFX(goalSFX);
+            }
         }
 
         StartCoroutine(Reset());

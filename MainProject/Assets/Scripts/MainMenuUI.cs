@@ -23,6 +23,11 @@ public class MainMenuUI : MonoBehaviour
             volumeSlider.value = savedVolume;
             volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
         }
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMusic();
+        }
     }
 
     public void OnPlayButton()
