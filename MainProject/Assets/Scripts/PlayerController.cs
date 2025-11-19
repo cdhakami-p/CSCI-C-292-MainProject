@@ -98,6 +98,11 @@ public class PlayerController : MonoBehaviour
         prevBoostPressed = false;
     }
 
+    public bool IsBoostReady()
+    {
+        return Time.time >= nextBoostTime;
+    }
+
     public void EnableAI()
     {
         isAI = true;

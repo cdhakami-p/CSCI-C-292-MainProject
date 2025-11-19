@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8212826304920184613}
   - component: {fileID: 6477726799698746978}
   - component: {fileID: 1136300875714942002}
+  - component: {fileID: -1381629953466567802}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Ball
@@ -155,3 +156,20 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5625
+--- !u!114 &-1381629953466567802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2937830914988388641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03238950d87f2a74482aa7a1c5620030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BallSFX
+  bounceSFX: {fileID: 8300000, guid: 968de0cace0c5d54ba4147c35fd4911b, type: 3}
+  minVelocity: 0.5
+  maxVelocity: 10
+  baseVolume: 0.8
+  cooldown: 0.1

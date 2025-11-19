@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.024, y: 0.024, z: 1}
+  m_LocalScale: {x: 0.025, y: 0.025, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1337610113575494608}
@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 4993067583499915334}
   - component: {fileID: -2579600532057220342}
   - component: {fileID: -3291705648473783705}
+  - component: {fileID: -4497961839402161908}
   m_Layer: 9
   m_Name: Narwhal
   m_TagString: Untagged
@@ -299,3 +300,20 @@ MonoBehaviour:
   offset: {x: 0, y: 1}
   releaseForce: 5
   ballTag: Ball
+--- !u!114 &-4497961839402161908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5721266992388596861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63d305eefd256de4183b3aeefa4d70bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAbilityUI
+  ringRenderer: {fileID: 0}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  boostReadyColor: {r: 0, g: 1, b: 0, a: 1}
+  abilityReadyColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pulseSpeed: 0.5

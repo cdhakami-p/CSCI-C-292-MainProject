@@ -15,6 +15,11 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private Button pauseButton;
     [SerializeField] private GameObject pausePanel;
 
+    [SerializeField] private GameObject HUD;
+
+    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private TMP_Text finalScoreText;
+
     [SerializeField] private TMP_Text countdownText;
 
     [SerializeField] private string mainMenuSceneName = "MainMenu";
@@ -61,6 +66,11 @@ public class GameUIManager : MonoBehaviour
         if (pausePanel != null)
         {
             pausePanel.SetActive(false);
+        }
+
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(false);
         }
 
         if (AudioManager.Instance != null)
@@ -371,17 +381,29 @@ public class GameUIManager : MonoBehaviour
     {
         gameActive = false;
         isPaused = true;
+        
+        pauseButton.gameObject.SetActive(false);
+
+        HUD.gameObject.SetActive(false);
+        scoreText.gameObject.SetActive(false);
+        timerText.gameObject.SetActive(false);
+
 
         if (countdownText != null)
         {
-            countdownText.gameObject.SetActive(true);
-            countdownText.text = "Game Over!";
+            countdownText.gameObject.SetActive(false);
         }
 
-        yield return new WaitForSecondsRealtime(3f);
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+        }
 
-        Time.timeScale = 1f;
+        if (finalScoreText != null)
+        {
+            finalScoreText.text = string.Format("{0} - {1}", bottomScore, topScore);
+        }
 
-        SceneManager.LoadScene(mainMenuSceneName);
+        yield break;
     }
 }
