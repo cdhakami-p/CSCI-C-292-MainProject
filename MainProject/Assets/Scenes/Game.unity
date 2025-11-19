@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 283601739}
   - component: {fileID: 283601738}
   - component: {fileID: 283601741}
+  - component: {fileID: 283601742}
   m_Layer: 5
   m_Name: PauseButton
   m_TagString: Untagged
@@ -392,6 +393,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &283601742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283601736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2470c276319c2429ae1b86419aabeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonClickSound
+  clickSound: {fileID: 8300000, guid: 946b661ba80d099458448a4ac8e09a2c, type: 3}
 --- !u!1 &308943956
 GameObject:
   m_ObjectHideFlags: 0
@@ -4644,6 +4658,7 @@ GameObject:
   - component: {fileID: 1138754367}
   - component: {fileID: 1138754366}
   - component: {fileID: 1138754365}
+  - component: {fileID: 1138754368}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -4765,6 +4780,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1138754363}
   m_CullTransparentMesh: 1
+--- !u!114 &1138754368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138754363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2470c276319c2429ae1b86419aabeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonClickSound
+  clickSound: {fileID: 8300000, guid: 946b661ba80d099458448a4ac8e09a2c, type: 3}
 --- !u!1 &1183106126
 GameObject:
   m_ObjectHideFlags: 0
@@ -11973,6 +12001,7 @@ GameObject:
   - component: {fileID: 2144790372}
   - component: {fileID: 2144790371}
   - component: {fileID: 2144790370}
+  - component: {fileID: 2144790373}
   m_Layer: 5
   m_Name: ResumeButton
   m_TagString: Untagged
@@ -12094,6 +12123,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2144790368}
   m_CullTransparentMesh: 1
+--- !u!114 &2144790373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144790368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2470c276319c2429ae1b86419aabeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonClickSound
+  clickSound: {fileID: 8300000, guid: 946b661ba80d099458448a4ac8e09a2c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
