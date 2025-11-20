@@ -45,6 +45,9 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private AudioClip countdownSFX;
     [SerializeField] private AudioClip goalSFX;
 
+    [SerializeField] private ParticleSystem bottomConfetti;
+    [SerializeField] private ParticleSystem topConfetti;
+
     private List<Rigidbody2D> bottomPlayers = new List<Rigidbody2D>();
     private List<Rigidbody2D> topPlayers = new List<Rigidbody2D>();
 
@@ -221,9 +224,17 @@ public class GameUIManager : MonoBehaviour
         if(scoredOnTop)
         {
             bottomScore++;
+            if (topConfetti != null)
+            {
+                topConfetti.Play();
+            }
         } else
         {
             topScore++;
+            if (bottomConfetti != null)
+            {
+                bottomConfetti.Play();
+            }
         }
         
         if (scoreText != null)
