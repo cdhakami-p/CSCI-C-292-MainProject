@@ -25,6 +25,11 @@ public class AIController : MonoBehaviour
     private AbilityAC ability;
     private Rigidbody2D rb;
 
+    public bool isDefender = false;
+    [SerializeField] private float defenderDistance = 3f;
+    [SerializeField] private float defenderRadius = 3f;
+    [SerializeField] private Transform ownGoal;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -60,6 +65,26 @@ public class AIController : MonoBehaviour
                 }
             }
         }
+
+        if (ownGoal == null)
+        {
+            if (isTopTeam)
+            {
+                var goal = GameObject.FindGameObjectWithTag("TopGoal");
+                if (goal != null)
+                {
+                    ownGoal = goal.transform;
+                }
+            }
+            else
+            {
+                var goal = GameObject.FindGameObjectWithTag("BottomGoal");
+                if (goal != null)
+                {
+                    ownGoal = goal.transform;
+                }
+            }
+        }
     }
 
     // Update is called once per frame
@@ -72,24 +97,43 @@ public class AIController : MonoBehaviour
 
         bool carryingBall = (ball.parent == this.transform);
 
-        Vector2 dir;
+        Vector2 dir = transform.up;
 
-        if (carryingBall && enemyGoal != null)
+        bool isDefending = false;
+
+        if (isDefender && ownGoal != null && !carryingBall)
         {
-            dir = (Vector2)(enemyGoal.position - transform.position);
-        } else
-        {
-            Vector2 toBall = (Vector2)(ball.position - transform.position);
-            float distToBall = toBall.magnitude;
+            float ballToGoal = Vector2.Distance(ball.position, ownGoal.position);
 
-            dir = toBall;
-
-            if (enemyGoal != null && distToBall < attackDistance)
+            if (ballToGoal > defenderRadius)
             {
-                dir = (Vector2)(enemyGoal.position - transform.position);
+                float guard = ownGoal.position.y + (isTopTeam ? -defenderDistance : defenderDistance);
+                Vector2 defendPos = new Vector2(ball.position.x, guard);
+
+                dir = defendPos - (Vector2)transform.position;
+                isDefending = true;
             }
         }
 
+        if (!isDefending)
+        {
+            if (carryingBall && enemyGoal != null)
+            {
+                dir = (Vector2)(enemyGoal.position - transform.position);
+            }
+            else
+            {
+                Vector2 toBall = (Vector2)(ball.position - transform.position);
+                float distToBall = toBall.magnitude;
+
+                dir = toBall;
+
+                if (enemyGoal != null && distToBall < attackDistance)
+                {
+                    dir = (Vector2)(enemyGoal.position - transform.position);
+                }
+            }
+        } 
 
         Vector2 forward = transform.up;
         float angle = Vector2.SignedAngle(forward, dir.normalized);
@@ -138,5 +182,10 @@ public class AIController : MonoBehaviour
         }
 
         pc.SetAIInput(forwardInput, turnInput, boost);
+    }
+
+    public void SetDefender(bool defender)
+    {
+        isDefender = defender;
     }
 }
