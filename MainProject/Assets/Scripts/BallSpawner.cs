@@ -31,5 +31,14 @@ public class BallSpawner : MonoBehaviour
                 ui.RegisterBall(rb);
             }
         }
+
+        var ai = FindFirstObjectByType<AIManager>();
+        if (ai != null)
+        {
+            var rb = ballObj.GetComponent<Rigidbody2D>();
+            if (rb != null) {
+                ai.RegisterBall(rb);
+            }
+        }
     }
 }

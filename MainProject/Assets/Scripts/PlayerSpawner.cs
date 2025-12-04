@@ -114,6 +114,7 @@ public class PlayerSpawner : MonoBehaviour
             {
                 var ai = player.AddComponent<AIController>();
                 ai.isTopTeam = !isBottomTeam;
+                print(ai.isTopTeam);
                 controller.EnableAI();
             }
         }

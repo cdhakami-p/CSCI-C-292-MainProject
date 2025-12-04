@@ -26,8 +26,8 @@ public class AIController : MonoBehaviour
     private Rigidbody2D rb;
 
     public bool isDefender = false;
-    [SerializeField] private float defenderDistance = 3f;
-    [SerializeField] private float defenderRadius = 3f;
+    [SerializeField] private float defenderDistance = 4f;
+    [SerializeField] private float defenderRadius = 4f;
     [SerializeField] private Transform ownGoal;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -74,6 +74,7 @@ public class AIController : MonoBehaviour
                 if (goal != null)
                 {
                     ownGoal = goal.transform;
+                    print("Assigned own goal for top team");
                 }
             }
             else
@@ -82,6 +83,7 @@ public class AIController : MonoBehaviour
                 if (goal != null)
                 {
                     ownGoal = goal.transform;
+                    print("Assigned own goal for bottom team");
                 }
             }
         }
@@ -108,7 +110,7 @@ public class AIController : MonoBehaviour
             if (ballToGoal > defenderRadius)
             {
                 float guard = ownGoal.position.y + (isTopTeam ? -defenderDistance : defenderDistance);
-                Vector2 defendPos = new Vector2(ball.position.x, guard);
+                Vector2 defendPos = new Vector2(ownGoal.position.x, guard);
 
                 dir = defendPos - (Vector2)transform.position;
                 isDefending = true;
