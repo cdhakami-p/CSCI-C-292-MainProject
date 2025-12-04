@@ -27,7 +27,7 @@ public class AIController : MonoBehaviour
 
     public bool isDefender = false;
     [SerializeField] private float defenderDistance = 4f;
-    [SerializeField] private float defenderRadius = 4f;
+    [SerializeField] private float defenderRadius = 6f;
     [SerializeField] private Transform ownGoal;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -102,17 +102,29 @@ public class AIController : MonoBehaviour
         Vector2 dir = transform.up;
 
         bool isDefending = false;
+        bool atDefensePosition = false;
 
         if (isDefender && ownGoal != null && !carryingBall)
         {
             float ballToGoal = Vector2.Distance(ball.position, ownGoal.position);
 
-            if (ballToGoal > defenderRadius)
+            if (ballToGoal > defenderRadius && !atDefensePosition)
             {
                 float guard = ownGoal.position.y + (isTopTeam ? -defenderDistance : defenderDistance);
                 Vector2 defendPos = new Vector2(ownGoal.position.x, guard);
 
-                dir = defendPos - (Vector2)transform.position;
+                float distToDefendPos = Vector2.Distance(transform.position, defendPos);
+
+                if (distToDefendPos > 2f)
+                {
+                    dir = defendPos - (Vector2)transform.position;
+                } else
+                {
+                    dir = (Vector2)(ball.position - transform.position);
+                    atDefensePosition = true;
+                    //print("At defense position");
+                }
+
                 isDefending = true;
             }
         }
@@ -152,7 +164,12 @@ public class AIController : MonoBehaviour
 
         float forwardInput = Mathf.Abs(angle) < forwardAngle ? 1f : 0.5f;
 
-        
+        if (isDefending && atDefensePosition)
+        {
+            forwardInput = 0f;
+        }
+
+
         bool boost = false;
         float distanceToBall = Vector2.Distance(transform.position, ball.position);
 
