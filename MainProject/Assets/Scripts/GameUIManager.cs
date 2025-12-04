@@ -22,6 +22,10 @@ public class GameUIManager : MonoBehaviour
 
     [SerializeField] private TMP_Text countdownText;
 
+    [SerializeField] private GameObject replayHUD;
+    [SerializeField] private TMP_Text replayText;
+    private Coroutine replayFlash;
+
     [SerializeField] private string mainMenuSceneName = "MainMenu";
 
     [SerializeField] private float matchDuration = 180f;
@@ -74,6 +78,15 @@ public class GameUIManager : MonoBehaviour
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(false);
+        }
+
+        if (replayHUD != null)
+        {
+            replayHUD.SetActive(false);
+            if (replayText != null)
+            {
+                replayText.enabled = false;
+            }
         }
 
         if (AudioManager.Instance != null)
@@ -254,6 +267,27 @@ public class GameUIManager : MonoBehaviour
         StartCoroutine(Reset());
     }
 
+    private IEnumerator Replay()
+    {
+        if (ReplayManager.Instance != null)
+        {   
+            yield return StartCoroutine(ReplayManager.Instance.PlayReplay());    
+        }
+    }
+
+    private IEnumerator ReplayFlash()
+    {
+        if (replayText == null) yield break;
+
+        replayText.enabled = true;
+
+        while (true)
+        {
+            replayText.enabled = !replayText.enabled;
+            yield return new WaitForSecondsRealtime(0.5f);
+        }
+    }
+
     private IEnumerator Reset()
     {
         gameActive = false;
@@ -269,6 +303,31 @@ public class GameUIManager : MonoBehaviour
 
         Time.timeScale = 0f;
         countdownText.gameObject.SetActive(false);
+
+        if (replayHUD != null)
+        {
+            replayHUD.SetActive(true);
+        }
+
+        if (replayFlash != null)
+        {
+            StopCoroutine(replayFlash);
+            replayFlash = null;
+        }
+        replayFlash = StartCoroutine(ReplayFlash());
+
+        yield return StartCoroutine(Replay());
+
+        if (replayFlash != null)
+        {
+            StopCoroutine(replayFlash);
+            replayFlash = null;
+        }
+
+        if (replayHUD != null)
+        {
+            replayHUD.SetActive(false);
+        }
 
         ResetPlayerAbilities();
         ResetBall();

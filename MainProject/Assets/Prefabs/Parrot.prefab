@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3322268797974840958}
   - component: {fileID: 1104107982157596916}
   - component: {fileID: -9104996071081422746}
+  - component: {fileID: -7431019406030200412}
   m_Layer: 9
   m_Name: Parrot
   m_TagString: Untagged
@@ -225,6 +226,18 @@ MonoBehaviour:
   boostReadyColor: {r: 0, g: 1, b: 0, a: 1}
   abilityReadyColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   pulseSpeed: 0.5
+--- !u!114 &-7431019406030200412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263064497371624180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e073f3f20068793469d006800c96c419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReplayRecord
 --- !u!1 &1812242993932570130
 GameObject:
   m_ObjectHideFlags: 0

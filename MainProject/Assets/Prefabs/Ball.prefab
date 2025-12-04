@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6477726799698746978}
   - component: {fileID: 1136300875714942002}
   - component: {fileID: -1381629953466567802}
+  - component: {fileID: -778715745522984340}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Ball
@@ -173,3 +174,15 @@ MonoBehaviour:
   maxVelocity: 10
   baseVolume: 0.8
   cooldown: 0.1
+--- !u!114 &-778715745522984340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2937830914988388641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e073f3f20068793469d006800c96c419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReplayRecord
