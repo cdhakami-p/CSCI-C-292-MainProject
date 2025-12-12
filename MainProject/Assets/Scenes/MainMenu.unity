@@ -424,7 +424,7 @@ MonoBehaviour:
   OTMusicSource: {fileID: 548588898}
   sfxSource: {fileID: 548588894}
   musicClip: {fileID: 8300000, guid: fe280db948fc3574c8e76e0822ad5a58, type: 3}
-  OTMusicClip: {fileID: 8300000, guid: 0a4f0ff44fe636c43a8143bb293d174b, type: 3}
+  OTMusicClip: {fileID: 8300000, guid: c274d86a11f241a4b946f5ad65d6f712, type: 3}
 --- !u!4 &548588897
 Transform:
   m_ObjectHideFlags: 0
