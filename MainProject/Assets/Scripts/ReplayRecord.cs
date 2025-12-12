@@ -112,11 +112,14 @@ public class ReplayRecord : MonoBehaviour
             abilityUI.enabled = !isReplay;
         }
 
-        if (!isReplay && sr != null)
+        if (!isReplay)
         {
-            Color c = sr.color;
-            c.a = 1f;
-            sr.color = c;
+            if (sr != null)
+            {
+                Color c = sr.color;
+                c.a = 1f;
+                sr.color = c;
+            }
         }
     }
 }

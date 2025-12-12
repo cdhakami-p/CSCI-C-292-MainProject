@@ -75,6 +75,9 @@ public class GameUIManager : MonoBehaviour
     private bool overtime = false;
     private bool finalGoal = false;
 
+    private Color bottomTeamColor = Color.lightBlue;
+    private Color topTeamColor = Color.red;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -375,6 +378,8 @@ public class GameUIManager : MonoBehaviour
             replayHUD.SetActive(false);
         }
 
+        ResetRingColor();
+
         if (finalGoal)
         {
             finalGoal = false;
@@ -598,5 +603,29 @@ public class GameUIManager : MonoBehaviour
         nextUnstuckCheck = -1f;
 
         ResetBallButton.gameObject.SetActive(false);
+    }
+
+    private void ResetRingColor()
+    {
+        foreach (var rb in bottomPlayers)
+        {
+            if (rb == null) continue;
+            var ring = rb.transform.Find("ring");
+            if (ring != null)
+            {
+                var rr = ring.GetComponent<SpriteRenderer>();
+                if (rr != null) rr.color = bottomTeamColor;
+            }
+        }
+        foreach (var rb in topPlayers)
+        {
+            if (rb == null) continue;
+            var ring = rb.transform.Find("ring");
+            if (ring != null)
+            {
+                var rr = ring.GetComponent<SpriteRenderer>();
+                if (rr != null) rr.color = topTeamColor;
+            }
+        }
     }
 }
