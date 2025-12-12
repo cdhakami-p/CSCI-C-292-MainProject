@@ -67,6 +67,7 @@ public class NarwalAbility : AbilityAC
     protected override void onWindowEnd()
     {
         abilityActive = false;
+        nextAbilityTime = Time.time + abilityCooldown;
 
         if (brb == null)
         {
