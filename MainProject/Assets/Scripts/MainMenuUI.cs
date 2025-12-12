@@ -26,6 +26,7 @@ public class MainMenuUI : MonoBehaviour
 
         if (AudioManager.Instance != null)
         {
+            AudioManager.Instance.StopOTMusic();
             AudioManager.Instance.PlayMusic();
         }
     }

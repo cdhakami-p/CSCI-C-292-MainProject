@@ -15,6 +15,8 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private Button pauseButton;
     [SerializeField] private GameObject pausePanel;
 
+    [SerializeField] private Button ResetBallButton;
+
     [SerializeField] private GameObject HUD;
 
     [SerializeField] private GameObject gameOverPanel;
@@ -48,6 +50,8 @@ public class GameUIManager : MonoBehaviour
 
     [SerializeField] private AudioClip countdownSFX;
     [SerializeField] private AudioClip goalSFX;
+    [SerializeField] private AudioClip otSFX;
+    [SerializeField] private AudioClip otMusic;
 
     [SerializeField] private ParticleSystem bottomConfetti;
     [SerializeField] private ParticleSystem topConfetti;
@@ -62,13 +66,19 @@ public class GameUIManager : MonoBehaviour
     private int bottomScore = 0;
     private int topScore = 0;
 
+    private float ballStuckTimer = 5f;
+    private float nextUnstuckCheck = -1f;
+    private bool resetActive = false;
+
     private bool gameOver = false;
+    private bool overtime = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         timeRemaining = matchDuration;
         UpdateTimerUI();
+        overtime = false;
 
         if (pausePanel != null)
         {
@@ -78,6 +88,11 @@ public class GameUIManager : MonoBehaviour
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(false);
+        }
+
+        if (ResetBallButton != null)
+        {
+            ResetBallButton.gameObject.SetActive(false);
         }
 
         if (replayHUD != null)
@@ -111,7 +126,7 @@ public class GameUIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameActive && !isPaused)
+        if (gameActive && !isPaused && !gameOver && !overtime)
         {
             timeRemaining -= Time.unscaledDeltaTime;
 
@@ -119,6 +134,25 @@ public class GameUIManager : MonoBehaviour
             {
                 timeRemaining = 0f;
                 UpdateTimerUI();
+
+                if (bottomScore == topScore)
+                {
+                    overtime = true;
+                    if (timerText != null)
+                    {
+                        timerText.text = "OT!";
+                    }
+                    if (AudioManager.Instance != null)
+                    {
+                        AudioManager.Instance.StopMusic();
+                        if (otSFX != null)
+                        {
+                            AudioManager.Instance.PlaySFX(otSFX);
+                            AudioManager.Instance.PlayOTMusic();
+                        }
+                    }
+                    return;
+                }
 
                 StartCoroutine(GameOver());
                 gameOver = true;
@@ -128,6 +162,8 @@ public class GameUIManager : MonoBehaviour
 
             UpdateTimerUI();
         }
+
+        UnstuckBall();
     }
 
     private IEnumerator StartCountdown()
@@ -262,6 +298,13 @@ public class GameUIManager : MonoBehaviour
             {
                 AudioManager.Instance.PlaySFX(goalSFX);
             }
+        }
+
+        if (overtime)
+        {
+            StartCoroutine(GameOver());
+            gameOver = true;
+            return;
         }
 
         StartCoroutine(Reset());
@@ -475,5 +518,65 @@ public class GameUIManager : MonoBehaviour
         }
 
         yield break;
+    }
+
+    private void UnstuckBall()
+    {
+        if (ball == null || ballSpawn == null) return;
+
+        bool isMoving = ball.linearVelocity.sqrMagnitude > 0.05f;
+
+        if (ball.transform.parent != null)
+        {
+            nextUnstuckCheck = -1f;
+            
+            if (resetActive)
+            {
+                resetActive = false;
+                ResetBallButton.gameObject.SetActive(false);
+            }
+            return;
+        }
+
+        if (resetActive)
+        {
+            if (isMoving)
+            {
+                resetActive = false;
+                nextUnstuckCheck = -1f;
+                ResetBallButton.gameObject.SetActive(false);
+            }
+            return;
+        }
+
+        if (isMoving) {
+            nextUnstuckCheck = -1f;
+            return;
+        }  
+
+        if (nextUnstuckCheck < 0f)
+        {
+            nextUnstuckCheck = Time.time + ballStuckTimer;
+            return;
+        }
+
+        if (Time.time >= nextUnstuckCheck)
+        {
+            resetActive = true;
+            nextUnstuckCheck = -1f;
+            ResetBallButton.gameObject.SetActive(true);
+        }
+    }
+
+    public void OnResetBallButton()
+    {
+        if (ball == null || ballSpawn == null) return;
+
+        ResetBall();
+
+        resetActive = false;
+        nextUnstuckCheck = -1f;
+
+        ResetBallButton.gameObject.SetActive(false);
     }
 }
