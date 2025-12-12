@@ -4,6 +4,7 @@ public class ReplayRecord : MonoBehaviour
 {
     private Vector3[] positionBuffer;
     private Quaternion[] rotationBuffer;
+    private Vector3[] scaleBuffer;
 
     private int bufferSize;
 
@@ -17,6 +18,7 @@ public class ReplayRecord : MonoBehaviour
         bufferSize = size;
         positionBuffer = new Vector3[size];
         rotationBuffer = new Quaternion[size];
+        scaleBuffer =new Vector3[size];
 
         rb = GetComponent<Rigidbody2D>();
         pc = GetComponent<PlayerController>();
@@ -38,6 +40,7 @@ public class ReplayRecord : MonoBehaviour
 
         positionBuffer[index] = transform.position;
         rotationBuffer[index] = transform.rotation;
+        scaleBuffer[index] = transform.localScale;
     }
 
     public void PlaySample(int index)
@@ -46,6 +49,7 @@ public class ReplayRecord : MonoBehaviour
 
         transform.position = positionBuffer[index];
         transform.rotation = rotationBuffer[index];
+        transform.localScale = scaleBuffer[index];
     }
 
     public void SetReplay(bool isReplay)
