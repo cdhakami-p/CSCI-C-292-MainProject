@@ -21,6 +21,7 @@ public class GameUIManager : MonoBehaviour
 
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TMP_Text finalScoreText;
+    [SerializeField] private TMP_Text finalScoreText2;
 
     [SerializeField] private TMP_Text countdownText;
 
@@ -72,6 +73,7 @@ public class GameUIManager : MonoBehaviour
 
     private bool gameOver = false;
     private bool overtime = false;
+    private bool finalGoal = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -302,9 +304,7 @@ public class GameUIManager : MonoBehaviour
 
         if (overtime)
         {
-            StartCoroutine(GameOver());
-            gameOver = true;
-            return;
+            finalGoal = true;
         }
 
         StartCoroutine(Reset());
@@ -370,6 +370,18 @@ public class GameUIManager : MonoBehaviour
         if (replayHUD != null)
         {
             replayHUD.SetActive(false);
+        }
+
+        if (finalGoal)
+        {
+            finalGoal = false;
+            gameOver = true;
+            if (finalScoreText2.text != null)
+            {
+                finalScoreText2.text = "Final Score (OT)";
+            }
+            StartCoroutine(GameOver());
+            yield break;
         }
 
         ResetPlayerAbilities();

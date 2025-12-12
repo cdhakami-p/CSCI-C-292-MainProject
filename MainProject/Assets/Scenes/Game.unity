@@ -4925,7 +4925,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -0.000000050900177, w: 0}
+  m_margin: {x: -101.964066, y: 0, z: -103.53499, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5555,7 +5555,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1172189461
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6797,6 +6797,7 @@ MonoBehaviour:
   HUD: {fileID: 1264306279}
   gameOverPanel: {fileID: 1172189460}
   finalScoreText: {fileID: 1219071345}
+  finalScoreText2: {fileID: 966133426}
   countdownText: {fileID: 732073705}
   replayHUD: {fileID: 1532943324}
   replayText: {fileID: 256284862}
