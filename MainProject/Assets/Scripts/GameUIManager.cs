@@ -165,7 +165,10 @@ public class GameUIManager : MonoBehaviour
             UpdateTimerUI();
         }
 
-        UnstuckBall();
+        if (!gameOver)
+        {
+            UnstuckBall();
+        }
     }
 
     private IEnumerator StartCountdown()
@@ -522,6 +525,11 @@ public class GameUIManager : MonoBehaviour
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true);
+        }
+
+        if (ResetBallButton != null)
+        {
+            ResetBallButton.gameObject.SetActive(false);
         }
 
         if (finalScoreText != null)
