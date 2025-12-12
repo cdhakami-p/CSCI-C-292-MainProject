@@ -3,8 +3,10 @@ using UnityEngine;
 public class NarwalAbility : AbilityAC
 {
     [SerializeField] Vector2 offset = new Vector2(0, 1);
-    [SerializeField] float releaseForce = 5.0f;
+    [SerializeField] float releaseForce = 2.0f;
     [SerializeField] string ballTag = "Ball";
+
+    [SerializeField] private float minImpact = 5.0f;
 
     Rigidbody2D brb;
     Collider2D bcol;
@@ -19,6 +21,23 @@ public class NarwalAbility : AbilityAC
 
     private void OnCollisionEnter2D(Collision2D c)
     {
+        if (brb != null)
+        {
+            if (c.collider.CompareTag(ballTag) || c.otherCollider.CompareTag(ballTag))
+            {
+                return;
+            }
+
+            float impact = c.relativeVelocity.magnitude;
+
+            if (impact >= minImpact)
+            {
+                onWindowEnd();
+            }
+
+            return;
+        }
+
         if (!abilityActive || c.rigidbody == null || brb != null)
         {
             return;
@@ -47,6 +66,8 @@ public class NarwalAbility : AbilityAC
 
     protected override void onWindowEnd()
     {
+        abilityActive = false;
+
         if (brb == null)
         {
             return;

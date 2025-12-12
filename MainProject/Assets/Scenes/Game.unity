@@ -6801,7 +6801,7 @@ MonoBehaviour:
   replayHUD: {fileID: 1532943324}
   replayText: {fileID: 256284862}
   mainMenuSceneName: MainMenu
-  matchDuration: 10
+  matchDuration: 180
   ballSpawn: {fileID: 2074322468}
   playerBottomSpawn: {fileID: 2077660046}
   playerTopSpawn: {fileID: 900176098}
@@ -6821,6 +6821,7 @@ MonoBehaviour:
   countdownSFX: {fileID: 8300000, guid: 32aeb82e7828ba543a189008d554e6c3, type: 3}
   goalSFX: {fileID: 8300000, guid: cb6de80b949cc6a418a2e48a4ce9de77, type: 3}
   otSFX: {fileID: 8300000, guid: 1e4bc26201a8f8848ad32e4fd4dfff52, type: 3}
+  otMusic: {fileID: 0}
   bottomConfetti: {fileID: 1557985834}
   topConfetti: {fileID: 2138895434}
 --- !u!4 &1270227934
