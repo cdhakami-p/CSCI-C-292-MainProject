@@ -153,8 +153,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015258789, y: -15}
-  m_SizeDelta: {x: 79.06, y: 33.125}
+  m_AnchoredPosition: {x: -0.000015259, y: -15}
+  m_SizeDelta: {x: 100, y: 33.125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &169727480
 MonoBehaviour:
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -0.65167236, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -6801,7 +6801,7 @@ MonoBehaviour:
   replayHUD: {fileID: 1532943324}
   replayText: {fileID: 256284862}
   mainMenuSceneName: MainMenu
-  matchDuration: 10
+  matchDuration: 180
   ballSpawn: {fileID: 2074322468}
   playerBottomSpawn: {fileID: 2077660046}
   playerTopSpawn: {fileID: 900176098}
