@@ -7348,7 +7348,7 @@ MonoBehaviour:
   replayHUD: {fileID: 1532943324}
   replayText: {fileID: 256284862}
   mainMenuSceneName: MainMenu
-  matchDuration: 60
+  matchDuration: 180
   ballSpawn: {fileID: 2074322468}
   playerBottomSpawn: {fileID: 2077660046}
   playerTopSpawn: {fileID: 900176098}
