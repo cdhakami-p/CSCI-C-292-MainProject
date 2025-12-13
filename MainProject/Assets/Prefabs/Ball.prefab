@@ -186,3 +186,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e073f3f20068793469d006800c96c419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReplayRecord
+  isBall: 1

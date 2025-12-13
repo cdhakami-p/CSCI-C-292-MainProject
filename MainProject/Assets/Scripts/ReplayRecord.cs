@@ -18,6 +18,8 @@ public class ReplayRecord : MonoBehaviour
     private SpriteRenderer rr;
     private PlayerAbilityUI abilityUI;
 
+    [SerializeField] private bool isBall = false;
+
     public void Initialize(int size)
     {
         bufferSize = size;
@@ -56,9 +58,13 @@ public class ReplayRecord : MonoBehaviour
 
         positionBuffer[index] = transform.position;
         rotationBuffer[index] = transform.rotation;
-        scaleBuffer[index] = transform.localScale;
-        alphaBuffer[index] = (sr != null) ? sr.color.a : 1f;
-        ringBuffer[index] = (rr != null) ? rr.color : Color.white;
+
+        if (!isBall)
+        {
+            scaleBuffer[index] = transform.localScale;
+            alphaBuffer[index] = (sr != null) ? sr.color.a : 1f;
+            ringBuffer[index] = (rr != null) ? rr.color : Color.white;
+        }
     }
 
     public void PlaySample(int index)
@@ -67,18 +73,22 @@ public class ReplayRecord : MonoBehaviour
 
         transform.position = positionBuffer[index];
         transform.rotation = rotationBuffer[index];
-        transform.localScale = scaleBuffer[index];
-        
-        if (sr != null)
-        {
-            Color color = sr.color;
-            color.a = alphaBuffer[index];
-            sr.color = color;
-        }
 
-        if (rr != null)
+        if (!isBall)
         {
-            rr.color = ringBuffer[index];
+            transform.localScale = scaleBuffer[index];
+
+            if (sr != null)
+            {
+                Color color = sr.color;
+                color.a = alphaBuffer[index];
+                sr.color = color;
+            }
+
+            if (rr != null)
+            {
+                rr.color = ringBuffer[index];
+            }
         }
     }
 
