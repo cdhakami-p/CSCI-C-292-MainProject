@@ -265,7 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   useArrows: 0
   moveSpeed: 3
-  turnSpeed: 200
+  turnSpeed: 225
   friction: 0.2
   boostStrength: 6
   boostCooldown: 3
@@ -331,3 +331,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e073f3f20068793469d006800c96c419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReplayRecord
+  isBall: 0
