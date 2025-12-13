@@ -1,0 +1,41 @@
+﻿Assets & Code
+Assets:
+https://kenney.nl/assets/animal-pack-reduxLinks to an external site. - Animal players
+https://kenney.nl/assets/sports-packLinks to an external site. - Sport/Soccer ball pack
+ https://kenney.nl/assets/roguelike-modern-cityLinks to an external site. - Arena details
+ https://emanuelledev.itch.io/farm-rpgLinks to an external site. - World backgrounds
+ https://kenney.nl/assets/impact-soundsLinks to an external site. - Hit sounds
+ https://opengameart.org/content/awake-megawall-10Links to an external site. - Background music
+https://opengameart.org/content/level-up-power-up-coin-get-13-soundsLinks to an external site. - Ability and goal sounds
+https://opengameart.org/content/energy-drain - OT Sound
+https://opengameart.org/content/fast-fight-battle-music - OT music 
+https://www.dafont.com/alphakind.font - Text font 
+https://opengameart.org/content/race-start-countdown - Countdown Sound
+https://opengameart.org/content/mouse-click - Click Sound
+
+
+
+
+
+
+
+
+Code:
+* ChatGPT help with tileset in Unity: https://chatgpt.com/share/68f00684-5ab0-8011-973b-6c85c1c29e9f
+* YouTube video help with some drifting/driving mechanics (FixedUpdate in PlayerController.cs):
+https://www.youtube.com/watch?v=DVHcOS1E5OQ&list=PLyDa4NP_nvPfmvbC-eqyzdhOXeCyhToko
+* Sources for help with parenting and opacity ability uses (Sections of lines 50-90 in NarwhalAbility.cs & SetAlpha in OwlAbility.cs) :
+ https://www.youtube.com/watch?v=uniiqqpDWAc&t=686s, https://discussions.unity.com/t/unity-4-3-how-to-change-the-opacity-of-a-2d-sprite/526034
+* YouTube video for basic UI:
+ https://www.youtube.com/watch?v=IuuKUaZQiSU
+* YouTube video for timer logic & display (Update & UpdateTimerUI in GameUIManager.cs):
+* https://www.youtube.com/watch?v=POq1i8FyRyQ
+* Page and video for reset logic (Sections of StartCountdown & Reset/ResetPlayerAbilities in GameUIManager.cs):
+https://discussions.unity.com/t/solved-countdown-timer-using-coroutines-in-update/615334/2?utm_source=chatgpt.com , https://www.youtube.com/watch?v=Y-Zt_hxtcUc
+* Proportional Audio (BallSFX.cs): https://discussions.unity.com/t/sound-volume-based-on-rigidbody-velocity-before-collision/20418
+* Audio Help (Sections of AudioManager.cs & Start in MainMenuUI.cs): https://www.youtube.com/watch?v=N8whM1GjH4w
+* Confetti Video (Lines 280-295 in GameUIManager.cs): https://www.youtube.com/watch?v=Zl-oZLLcK9g
+* Replay Help (Sections of ReplayManager.cs & ReplayRecord.cs): https://www.youtube.com/watch?v=R8RinJDzhf8
+* https://discussions.unity.com/t/keeping-last-15-seconds-captured-by-a-camera/645238/4
+Note: 
+   * These code references don’t usually mean I simply copied code from the source but rather used the overall ideas and logic and applied it to my own project. Many sources also helped with creating things or adjusting things in the inspector, not just code. I also address each source I used for each milestone in each milestone video a little more in depth. All of these sources for assets and code are also listed in my Scope & Plan document on GitHub.
