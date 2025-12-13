@@ -28,6 +28,8 @@ public class SelectMenuUI : MonoBehaviour
     public Button playButton;
     public Button lockInButton;
 
+    [SerializeField] private GameObject helpPanel;
+
     public string gameSceneName = "Game";
     public string mainMenuSceneName = "MainMenu";
 
@@ -192,6 +194,19 @@ public class SelectMenuUI : MonoBehaviour
     public void OnBackToMainMenu()
     {
         SceneManager.LoadScene(mainMenuSceneName);
+    }
+
+    public void OnHelpButton()
+    {
+        helpPanel.SetActive(!helpPanel.activeSelf);
+    }
+
+    public void OnCloseHelpsButton()
+    {
+        if (helpPanel != null)
+        {
+            helpPanel.SetActive(false);
+        }
     }
 
     // Disable Top
